@@ -1,0 +1,3 @@
+test\election_BordaChoice_test.exe
+test\election_PluralityChoice_test.exe
+test\election_SchulzeChoice_test.exe

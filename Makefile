@@ -17,3 +17,18 @@ test_election_IsSinglePeakedness: test/election_IsSinglePeakedness_test.cc elect
 
 test_election_HasInsentiveLie: test/election_HasInsentiveLie_test.cc election.cc
 	g++ -std=c++11 -I../include -L../  -o test/election_HasInsentiveLie_test election.cc test/election_HasInsentiveLie_test.cc -lgtest -lpthread
+
+test_election_SocialWelfare: test/election_SocialWelfare_test.cc election.cc
+	g++ -std=c++11 -I../include -L../  -o test/election_SocialWelfare_test election.cc test/election_SocialWelfare_test.cc -lgtest -lpthread
+
+test_election_PairwiseComparison: test/election_PairwiseComparison_test.cc election.cc
+	g++ -std=c++11 -I../include -L../  -o test/election_PairwiseComparison_test election.cc test/election_PairwiseComparison_test.cc -lgtest -lpthread
+
+test_election_BordaChoice: test/election_BordaChoice_test.cc election.cc
+	g++ -std=c++11 -I../include -L../  -o test/election_BordaChoice_test election.cc test/election_BordaChoice_test.cc -lgtest -lpthread
+
+test_election_PluralityChoice: test/election_PluralityChoice_test.cc election.cc
+	g++ -std=c++11 -I../include -L../  -o test/election_PluralityChoice_test election.cc test/election_PluralityChoice_test.cc -lgtest -lpthread
+
+test_election_SchulzeChoice: test/election_SchulzeChoice_test.cc election.cc
+	g++ -std=c++11 -I../include -L../  -o test/election_SchulzeChoice_test election.cc test/election_SchulzeChoice_test.cc -lgtest -lpthread
