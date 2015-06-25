@@ -32,3 +32,6 @@ test_election_PluralityChoice: test/election_PluralityChoice_test.cc election.cc
 
 test_election_SchulzeChoice: test/election_SchulzeChoice_test.cc election.cc
 	g++ -std=c++11 -I../include -L../  -o test/election_SchulzeChoice_test election.cc test/election_SchulzeChoice_test.cc -lgtest -lpthread
+
+test_election_PreferencesDistance: test/election_PreferencesDistance_test.cc election.cc
+	g++ -std=c++11 -I../include -L../  -o test/election_PreferencesDistance_test election.cc test/election_PreferencesDistance_test.cc -lgtest -lpthread

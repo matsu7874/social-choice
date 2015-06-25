@@ -15,4 +15,6 @@ std::vector<int> PluralityChoice(const std::vector<std::vector<int>>& preference
 
 std::vector<int> SchulzeChoice(const std::vector<std::vector<int>>& preferences);
 
+int PreferencesDistance(const std::vector<std::vector<int>>& preferences);
+
 #endif // ELECTION_H_

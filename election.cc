@@ -54,11 +54,11 @@ double SocialWelfare(const std::vector<std::vector<int>>& individual_preferences
 }
 
 std::vector<std::vector<int>> PairwiseComparison(const std::vector<std::vector<int>>& individual_preferences){
-    const int kVoter = individual_preferences.size();
+    const int kVoters = individual_preferences.size();
     const int kChoices = individual_preferences[0].size();
     std::vector<std::vector<int>> pairwise_preferences(kChoices, std::vector<int>(kChoices));
     for(int i=0; i<kChoices; ++i){
-        pairwise_preferences[i][i] = kVoter;
+        pairwise_preferences[i][i] = kVoters;
     }
     for(auto preference: individual_preferences){
         for(int i=0; i<kChoices-1; ++i){
@@ -77,10 +77,10 @@ std::vector<std::vector<int>> PairwiseComparison(const std::vector<std::vector<i
 }
 
 std::vector<int> BordaScore(const std::vector<std::vector<int>>& individual_preferences){
-    const int kVoter = individual_preferences.size();
+    const int kVoters = individual_preferences.size();
     const int kChoices = individual_preferences[0].size();
-    std::vector<int> score(kChoices, (kChoices-1)*kChoices/2*(kVoter-1));
-    for(int i=0; i<kVoter; ++i){
+    std::vector<int> score(kChoices, (kChoices-1)*kChoices/2*(kVoters-1));
+    for(int i=0; i<kVoters; ++i){
         for(int j=0; j<kChoices; ++j){
             score[individual_preferences[i][j]] -= j;
         }
@@ -172,4 +172,28 @@ std::vector<int> SchulzeChoice(const std::vector<std::vector<int>>& individual_p
         }
     }
     return choices;
+}
+
+int PreferencesDistance(const std::vector<std::vector<int>>& preferences){
+    int distance = 0;
+    const int kVoters = preferences.size();
+    const int kChoices = preferences[0].size();
+    std::vector<std::vector<int>> rank(kVoters, std::vector<int>(kChoices, 0));
+    for(int i=0; i<kVoters; ++i){
+        for(int j=0; j<kChoices; j++){
+            rank[i][j] = std::distance(preferences[i].begin(), std::find(preferences[i].begin(), preferences[i].end(), j));
+        }
+    }
+    for(int i=0; i<kVoters-1; ++i){
+        for(int j=i+1; j<kVoters; ++j){
+            for(int k=0; k<kChoices-1; ++k){
+                for(int l=k+1; l<kChoices; ++l){
+                    if((rank[i][k]-rank[i][l])*(rank[j][k]-rank[j][l]) < 0){
+                        distance += 1;
+                    }
+                }
+            }
+        }
+    }
+    return distance;
 }
