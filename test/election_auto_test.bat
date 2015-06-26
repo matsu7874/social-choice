@@ -1,3 +1,8 @@
 test\election_BordaChoice_test.exe
 test\election_PluralityChoice_test.exe
 test\election_SchulzeChoice_test.exe
+test\election_HasInsentiveLie_test.exe
+test\election_IsSinglePeakedness_test.exe
+test\election_PairwiseComparison_test.exe
+test\election_PreferencesDistance_test.exe
+test\election_SocialWelfare_test.exe

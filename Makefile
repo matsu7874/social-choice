@@ -1,7 +1,9 @@
 CFLAGS=-I./
 
-simulation: choice.cc election.cc util.cc
-	g++ -Wall -std=c++11 -O2 -o simulation choice.cc election.cc util.cc
+simulation: simulation/simulation.cc election.cc util.cc
+	g++ -Wall -std=c++11 -O2 -o simulation/simulation simulation/simulation.cc election.cc util.cc
+allsimulation: simulation/simulation.cc election.cc util.cc
+	g++ -std=c++11 -O2 -o simulation/AllSimulation simulation/AllSimulation.cc util.cc election.cc
 
 filter: false_filter.cc util.cc
 	g++ -Wall -std=c++11 -O2 -o filter false_filter.cc util.cc
