@@ -197,3 +197,29 @@ int PreferencesDistance(const std::vector<std::vector<int>>& preferences){
     }
     return distance;
 }
+
+int PreferencesDistance(const std::vector<std::vector<int>>& preferences, const std::vector<int>& root_preference){
+    const int kVoters = preferences.size();
+    const int kChoices = preferences[0].size();
+    std::vector<std::vector<int>> rank(kVoters, std::vector<int>(kChoices, 0));
+    for(int i=0; i<kVoters; ++i){
+        for(int j=0; j<kChoices; j++){
+            rank[i][j] = std::distance(preferences[i].begin(), std::find(preferences[i].begin(), preferences[i].end(), j));
+        }
+    }
+    std::vector<int> root_rank(kChoices, 0);
+    for(int i=0; i<kChoices; i++){
+        root_rank[i] = std::distance(root_preference.begin(), std::find(root_preference.begin(), root_preference.end(), i));
+    }
+    int distance = 0;
+    for(int i=0; i<kVoters; ++i){
+        for(int k=0; k<kChoices-1; ++k){
+            for(int l=k+1; l<kChoices; ++l){
+                if((rank[i][k]-rank[i][l])*(root_rank[k]-root_rank[l]) < 0){
+                    distance += 1;
+                }
+            }
+        }
+    }
+    return distance;
+}

@@ -8,7 +8,7 @@
 #include "../util.h"
 
 void Simulation(const int kVoter, const int kChoices, std::vector<int> (*choice_method)(const std::vector<std::vector<int>>&));
-
+void AllSimulation();
 int main(int argc, char* argv[]){
     const int kVoter = atoi(argv[1]);
     const int kChoices = atoi(argv[2]);
@@ -68,6 +68,8 @@ void Simulation(const int kVoter, const int kChoices, std::vector<int> (*choice_
                 std::cout << Vec2Str(preferences[i]) << " ";
             }
             std::cout << Vec2Str(true_social_choices) << " " << Vec2Str(false_social_choices) << " ";
+            std::cout << PreferencesDistance(true_preferences) << " ";
+            std::cout << PreferencesDistance(true_preferences, true_preferences[0]) << " ";
             std::cout << SocialWelfare(true_preferences, true_social_choices) << " ";
             std::cout << SocialWelfare(true_preferences, false_social_choices) << std::endl;
             if(std::next_permutation(preferences[voter].begin(), preferences[voter].end()) == false){

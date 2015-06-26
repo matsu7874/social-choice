@@ -3,12 +3,12 @@
 
 #include "util.h"
 
-std::string Vec2Str(std::vector<int> vec){
+std::string Vec2Str(std::vector<int> vec, std::string end){
     int kLength = vec.size();
     std::string str="[";
     if(kLength > 0){
         for(int i=0; i<kLength-1; ++i){
-            str += std::to_string(vec[i]) + ", ";
+            str += std::to_string(vec[i]) + end;
         }
         str += std::to_string(vec[kLength-1]);
     }

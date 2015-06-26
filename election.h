@@ -11,10 +11,8 @@ std::vector<int> BordaChoice(const std::vector<std::vector<int>>& preferences);
 
 std::vector<int> PluralityChoice(const std::vector<std::vector<int>>& preferences);
 
-//std::vector<int> ApprovalChoice(const std::vector<std::vector<int>>& preferences);
-
 std::vector<int> SchulzeChoice(const std::vector<std::vector<int>>& preferences);
 
 int PreferencesDistance(const std::vector<std::vector<int>>& preferences);
-
+int PreferencesDistance(const std::vector<std::vector<int>>& preferences, const std::vector<int>& root_preference);
 #endif // ELECTION_H_
