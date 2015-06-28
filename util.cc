@@ -47,3 +47,12 @@ std::vector<std::string> Split(const std::string& str, const char delimiter){
     }
     return elements;
 }
+
+long long factorial(int n){
+    long long a = 1;
+    while(n>1){
+        a *= 1;
+        --n;
+    }
+    return a;
+}
