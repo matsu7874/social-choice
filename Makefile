@@ -1,7 +1,7 @@
 CFLAGS=-I./
 
-simulation: simulation/simulation.cc election.cc util.cc
-	g++ -Wall -std=c++11 -O2 -o simulation/simulation simulation/simulation.cc election.cc util.cc
+simulation: simulation.cc election.cc util.cc voter.cc
+	g++ -Wall -std=c++11 -O2 -o simulation voter.cc election.cc util.cc simulation.cc 
 
 allsimulation: simulation/simulation.cc election.cc util.cc
 	g++ -std=c++11 -O2 -o simulation/AllSimulation simulation/AllSimulation.cc util.cc election.cc
@@ -38,3 +38,6 @@ test_election_SchulzeChoice: test/election_SchulzeChoice_test.cc election.cc
 
 test_election_PreferencesDistance: test/election_PreferencesDistance_test.cc election.cc
 	g++ -std=c++11 -I../include -L../  -o test/election_PreferencesDistance_test election.cc test/election_PreferencesDistance_test.cc -lgtest -lpthread
+
+test_Choices: test/Choices_test.cc voter.cc
+	g++ -std=c++11 -I../include -L../  -o test/Choices_test voter.cc test/Choices_test.cc -lgtest -lpthread

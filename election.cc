@@ -5,54 +5,6 @@
 #include "election.h"
 #include "util.h"
 
-
-bool IsSinglePeakedness(const std::vector<int>& individual_preference){
-    bool peak_appeared = false;
-    int pre_choice = individual_preference[0];
-    for(auto choice: individual_preference){
-        if(pre_choice < choice){
-            if(peak_appeared){
-                return false;
-            }else{
-                pre_choice = choice;
-            }
-        }else if(pre_choice > choice){
-            if(peak_appeared){
-                pre_choice = choice;
-            }else{
-                peak_appeared = true;
-            }
-        }
-    }
-    return true;
-}
-
-bool HasInsentiveLie(const std::vector<int>& individual_preference, const std::vector<int>& true_social_choices, const std::vector<int>& false_social_choices){
-    double utility_true=0.0, utility_false = 0.0;
-    for(auto true_social_choice: true_social_choices){
-        utility_true -= std::distance(individual_preference.begin(), find(individual_preference.begin(), individual_preference.end(), true_social_choice));
-    }
-    for(auto false_social_choice: false_social_choices){
-        utility_false -= std::distance(individual_preference.begin(), find(individual_preference.begin(), individual_preference.end(), false_social_choice));
-    }
-    utility_true /= true_social_choices.size();
-    utility_false /= false_social_choices.size();
-    if(utility_true < utility_false){
-        return true;
-    }
-    return false;
-}
-
-double SocialWelfare(const std::vector<std::vector<int>>& individual_preferences, const std::vector<int>& social_choices){
-    double social_welfare = 0.0;
-    for(auto social_choice: social_choices){
-        for(auto preference: individual_preferences){
-            social_welfare -= std::distance(preference.begin(), std::find(preference.begin(), preference.end(), social_choice));
-        }
-    }
-    return social_welfare/social_choices.size();
-}
-
 std::vector<std::vector<int>> PairwiseComparison(const std::vector<std::vector<int>>& individual_preferences){
     const int kVoters = individual_preferences.size();
     const int kChoices = individual_preferences[0].size();
